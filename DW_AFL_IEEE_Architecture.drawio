@@ -1,0 +1,184 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram name="DW-AFL Architecture" id="dwafl-architecture">
+    <mxGraphModel dx="860" dy="520" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="scheduler" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#222222;strokeWidth=2;align=center;verticalAlign=top;spacingTop=12;fontFamily=Arial;fontSize=24;fontStyle=1;" value="HPFL: RESOURCE-AWARE CLIENT SCHEDULING" vertex="1">
+          <mxGeometry height="230" width="1790" x="105" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="resource" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Client Resource State&lt;br&gt;Compute, Bandwidth, Energy" vertex="1">
+          <mxGeometry height="110" width="440" x="160" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="policy" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="GRU Scheduling Policy&lt;br&gt;Resource History" vertex="1">
+          <mxGeometry height="110" width="430" x="785" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="workload" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Training Workload&lt;br&gt;Light, Medium, Full" vertex="1">
+          <mxGeometry height="110" width="430" x="1400" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="res_to_policy" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="170" as="sourcePoint" />
+            <mxPoint x="785" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="policy_to_workload" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1215" y="170" as="sourcePoint" />
+            <mxPoint x="1400" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="client" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#222222;strokeWidth=2;align=center;verticalAlign=top;spacingTop=12;fontFamily=Arial;fontSize=24;fontStyle=1;" value="EDGE CLIENT: LOCAL TRAINING AND SPARSE UPDATE PROCESSING" vertex="1">
+          <mxGeometry height="505" width="1790" x="105" y="327" as="geometry" />
+        </mxCell>
+        <mxCell id="private" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Private Local Dataset&lt;br&gt;Remains on Device" vertex="1">
+          <mxGeometry height="100" width="335" x="145" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="cnn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="CNN-GRU Local Model&lt;br&gt;Assigned Workload" vertex="1">
+          <mxGeometry height="100" width="345" x="550" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="delta" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=23;" value="Local Model Update" vertex="1">
+          <mxGeometry height="100" width="310" x="980" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="clip" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=23;" value="Update Clipping" vertex="1">
+          <mxGeometry height="100" width="420" x="1380" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="data_to_cnn" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="467" as="sourcePoint" />
+            <mxPoint x="550" y="467" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cnn_to_delta" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="895" y="467" as="sourcePoint" />
+            <mxPoint x="980" y="467" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="delta_to_clip" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="467" as="sourcePoint" />
+            <mxPoint x="1380" y="467" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sparse" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Sparse Update Payload&lt;br&gt;Indices and Values" vertex="1">
+          <mxGeometry height="100" width="370" x="160" y="627" as="geometry" />
+        </mxCell>
+        <mxCell id="topk" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Adaptive Top-K&lt;br&gt;Compression" vertex="1">
+          <mxGeometry height="100" width="410" x="625" y="627" as="geometry" />
+        </mxCell>
+        <mxCell id="error" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Error-Feedback&lt;br&gt;Compensation" vertex="1">
+          <mxGeometry height="100" width="450" x="1130" y="627" as="geometry" />
+        </mxCell>
+        <mxCell id="memory" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=21;" value="Residual&lt;br&gt;Memory" vertex="1">
+          <mxGeometry height="100" width="215" x="1640" y="627" as="geometry" />
+        </mxCell>
+        <mxCell id="clipping_to_feedback" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1590" y="573" />
+              <mxPoint x="1355" y="573" />
+            </Array>
+            <mxPoint x="1590" y="517" as="sourcePoint" />
+            <mxPoint x="1355" y="627" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="feedback_to_topk" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1130" y="677" as="sourcePoint" />
+            <mxPoint x="1035" y="677" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="topk_to_sparse" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="625" y="677" as="sourcePoint" />
+            <mxPoint x="530" y="677" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="topk_to_residual" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="825" y="786" />
+              <mxPoint x="1747" y="786" />
+            </Array>
+            <mxPoint x="825" y="727" as="sourcePoint" />
+            <mxPoint x="1747" y="727" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="residual_to_feedback" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1640" y="677" as="sourcePoint" />
+            <mxPoint x="1580" y="677" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="residual_note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=19;" value="Untransmitted update retained for later rounds" vertex="1">
+          <mxGeometry height="30" width="580" x="880" y="762" as="geometry" />
+        </mxCell>
+        <mxCell id="assigned_workload" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="Workload assignment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1615" y="295" />
+              <mxPoint x="730" y="295" />
+            </Array>
+            <mxPoint x="1615" y="225" as="sourcePoint" />
+            <mxPoint x="730" y="417" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="server" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#222222;strokeWidth=2;align=center;verticalAlign=top;spacingTop=12;fontFamily=Arial;fontSize=24;fontStyle=1;" value="CENTRAL PARAMETER SERVER" vertex="1">
+          <mxGeometry height="260" width="1790" x="105" y="875" as="geometry" />
+        </mxCell>
+        <mxCell id="queue" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Asynchronous&lt;br&gt;Update Queue" vertex="1">
+          <mxGeometry height="110" width="340" x="150" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregate" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=21;" value="Dual-Weighted Aggregation&lt;br&gt;Sample Size, Training Quality&lt;br&gt;Staleness, Parameter Masks" vertex="1">
+          <mxGeometry height="140" width="500" x="570" y="945" as="geometry" />
+        </mxCell>
+        <mxCell id="update" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Global Model&lt;br&gt;Update" vertex="1">
+          <mxGeometry height="110" width="280" x="1170" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="global" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111111;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" value="Global CNN-GRU&lt;br&gt;Model" vertex="1">
+          <mxGeometry height="110" width="310" x="1540" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="queue_to_aggregate" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="1015" as="sourcePoint" />
+            <mxPoint x="570" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="agg_to_update" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1070" y="1015" as="sourcePoint" />
+            <mxPoint x="1170" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="update_to_global" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="1015" as="sourcePoint" />
+            <mxPoint x="1540" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sparse_uplink" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="Sparse updates">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="345" y="727" as="sourcePoint" />
+            <mxPoint x="345" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="global_broadcast" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#111111;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;fontFamily=Arial;fontSize=18;labelBackgroundColor=#FFFFFF;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1695" y="860" />
+              <mxPoint x="1858" y="860" />
+              <mxPoint x="1858" y="394" />
+              <mxPoint x="730" y="394" />
+            </Array>
+            <mxPoint x="1695" y="960" as="sourcePoint" />
+            <mxPoint x="730" y="417" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="model_broadcast_note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=18;" value="Model broadcast" vertex="1">
+          <mxGeometry height="30" width="580" x="1478" y="836" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
